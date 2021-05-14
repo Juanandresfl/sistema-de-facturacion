@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<title th:text="${titulo}">Insert title here</title>
+<link rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<header th:fragment="header">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Spring Boot</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Clientes</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+	<div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+	<div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+	<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+</header>
+
+<div class="container"></div>
+
+<footer th:fragment="footer" class="container">
+	<img src="data:image/png;base64,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"/>
+	<p> proyecto spring, utilizando thymeleaf</p>
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<script
+		th:src="@{/js/1.14.7/umd/popper.min.js}"></script>
+	<script
+		th:src="@{/js/bootstrap.min.js}"></script>
+		
+</footer>
+</body>
+</html>
